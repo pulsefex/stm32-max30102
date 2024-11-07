@@ -37,8 +37,8 @@
 #define MAX30102_REG_FIFO_DATA       0x07
 #define MAX30102_REG_MODE_CONFIG     0x09
 #define MAX30102_REG_SPO2_CONFIG     0x0A
-#define MAX30102_REG_LED1_PA         0x0C  // IR LED
-#define MAX30102_REG_LED2_PA         0x0D  // Red LED
+#define MAX30102_REG_LED1_PA         0x0C  // Red LED
+#define MAX30102_REG_LED2_PA         0x0D  // IR LED
 #define MAX30102_ADDR_WRITE          0xAE
 #define MAX30102_ADDR_READ           0xAF
 

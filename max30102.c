@@ -121,3 +121,39 @@ MAX30102_Status_t MAX30102_ReadFIFO(I2C_HandleTypeDef *hi2c, uint32_t *red_data,
 
     return MAX30102_OK;
 }
+
+MAX30102_Status_t ON(I2C_HandleTypeDef *hi2c) {
+    uint8_t data;
+
+    // Read current value of the SHDN bit
+    if (MAX30102_ReadRegister(hi2c, MAX30102_REG_MODE_CONFIG, &data) != MAX30102_OK) {
+        return MAX30102_ERROR;
+    }
+
+    data &= ~0x80; // Wake up sensor by clearing SHDN bit
+    if (MAX30102_WriteRegister(hi2c, MAX30102_REG_MODE_CONFIG, data) != MAX30102_OK) {
+        return MAX30102_ERROR;
+    }
+
+
+
+    return MAX30102_OK;
+}
+
+MAX30102_Status_t OFF(I2C_HandleTypeDef *hi2c) {
+    uint8_t data;
+
+    // Read current value of the SHDN bit
+    if (MAX30102_ReadRegister(hi2c, MAX30102_REG_MODE_CONFIG, &data) != MAX30102_OK) {
+        return MAX30102_ERROR;
+    }
+
+    data |= 0x80; // Put sensor to sleep using SHDN bit
+    if (MAX30102_WriteRegister(hi2c, MAX30102_REG_MODE_CONFIG, data) != MAX30102_OK) {
+        return MAX30102_ERROR;
+    }
+
+
+
+    return MAX30102_OK;
+}
